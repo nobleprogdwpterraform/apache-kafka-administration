@@ -54,9 +54,9 @@ docker exec -it kafka-1 /opt/kafka/bin/kafka-console-consumer.sh \
 ```bash
 docker exec -it kafka-2 /opt/kafka/bin/kafka-producer-perf-test.sh \
   --topic throughput-demo-topic \
-  --num-records 30000 \
-  --record-size 200 \
-  --throughput 200 \
+  --num-records 20000 \
+  --record-size 100 \
+  --throughput 500 \
   --producer-props bootstrap.servers=kafka-1:9092 acks=1
 ```
 
@@ -66,9 +66,9 @@ docker exec -it kafka-2 /opt/kafka/bin/kafka-producer-perf-test.sh \
 ```bash
 docker exec -it kafka-2 /opt/kafka/bin/kafka-producer-perf-test.sh \
   --topic throughput-demo-topic \
-  --num-records 30000 \
-  --record-size 200 \
-  --throughput 200 \
+  --num-records 20000 \
+  --record-size 100 \
+  --throughput 500 \
   --producer-props bootstrap.servers=kafka-1:9092 acks=1 batch.size=32768
 ```
 
@@ -79,8 +79,8 @@ docker exec -it kafka-2 /opt/kafka/bin/kafka-producer-perf-test.sh \
 ```bash
 docker exec -it kafka-2 /opt/kafka/bin/kafka-producer-perf-test.sh \
   --topic throughput-demo-topic \
-  --num-records 30000 \
-  --record-size 200 \
-  --throughput 200 \
+  --num-records 20000 \
+  --record-size 100 \
+  --throughput 500 \
   --producer-props bootstrap.servers=kafka-1:9092 acks=1 batch.size=32768 linger.ms=5
 ```

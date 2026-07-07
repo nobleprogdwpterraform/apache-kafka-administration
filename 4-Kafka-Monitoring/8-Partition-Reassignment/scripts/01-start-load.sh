@@ -7,8 +7,8 @@ docker exec "$BROKER_CONTAINER" bash -lc "
   $KAFKA_ENV_FIX
   /opt/kafka/bin/kafka-producer-perf-test.sh \
     --topic $TOPIC \
-    --num-records 3000000 \
-    --record-size 512 \
-    --throughput 20000 \
+  --num-records 20000 \
+  --record-size 100 \
+  --throughput 500 \
     --producer-props bootstrap.servers=$BOOTSTRAP acks=1 linger.ms=5 batch.size=65536
 "

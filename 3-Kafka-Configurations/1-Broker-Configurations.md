@@ -16,9 +16,10 @@
 | offsets.retention.minutes | 10080 |
 | background.threads | 10 |
 | message.max.bytes | 10485760 |
-| replica.fetch.max.bytes | 10485760 |
-| num.io.threads | 8 |
-| num.network.threads | 3 |
-| num.replica.fetchers | 1 |
-| broker.rack | us-east-1a |
 | unclean.leader.election.enable | false |
+
+
+
+## verify broker configs
+
+docker exec kafka-1 /opt/kafka/bin/kafka-configs.sh --bootstrap-server kafka-1:9092 --entity-type brokers --entity-name 1 --describe

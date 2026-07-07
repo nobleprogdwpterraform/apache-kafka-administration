@@ -39,9 +39,9 @@ This ensures lag monitor sees the group.
 ```bash
 docker exec -it broker3 kafka-producer-perf-test \
   --topic scale-demo-topic-v2 \
-  --num-records 5000 \
-  --record-size 200 \
-  --throughput 100 \
+  --num-records 20000 \
+  --record-size 100 \
+  --throughput 500 \
   --producer-props bootstrap.servers=broker1:9092 acks=1
 ```
 
@@ -76,9 +76,9 @@ You should see all ISR entries **green**.
 ```bash
 docker exec -it broker3 kafka-producer-perf-test \
   --topic scale-demo-topic-v2 \
-  --num-records 1000 \
-  --record-size 200 \
-  --throughput 200 \
+  --num-records 20000 \
+  --record-size 100 \
+  --throughput 500 \
   --producer-props bootstrap.servers=broker1:9092 acks=1
 ```
 

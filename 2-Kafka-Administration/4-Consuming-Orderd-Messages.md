@@ -17,6 +17,11 @@
 
 ## Send Messages
 
+1:first message
+1:second message
+1:third message
+1:fourth message
+
 ## Consuming Messages from the Topic
 ./kafka-console-consumer.sh \
   --topic messages-order \
