@@ -47,16 +47,3 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
 
-  kafdrop:
-    image: obsidiandynamics/kafdrop:4.0.2
-    container_name: kafdrop
-    restart: always
-    ports:
-        - "9000:9000"
-    depends_on:
-        - "kafka-1"
-        - "kafka-2"
-        - "kafka-3"
-    environment:
-        SERVER_SERVLET_CONTEXTPATH: "/"
-        KAFKA_BROKERCONNECT: "kafka-1:9090,kafka-2:9090,kafka-3:9090"

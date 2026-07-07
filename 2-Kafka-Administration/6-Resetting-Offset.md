@@ -28,6 +28,9 @@
   --group my-first-application
 
 
+## Other options
+
+
 ## Starting the Consumer Again
 
 ./kafka-console-consumer.sh \

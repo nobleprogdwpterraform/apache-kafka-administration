@@ -22,6 +22,11 @@
 1:third message
 1:fourth message
 
+A:A
+B:B
+C:C
+D:D
+
 ## Consuming Messages from the Topic
 ./kafka-console-consumer.sh \
   --topic messages-order \

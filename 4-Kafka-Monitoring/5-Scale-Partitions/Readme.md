@@ -4,7 +4,7 @@
 # 📦 **STEP 3 — Create Topic `scale-demo-topic-v2` (T2 inside broker1)**
 
 ```bash
-kafka-topics --bootstrap-server broker1:9092 \
+./kafka-topics.sh --bootstrap-server localhost:9092 \
   --create --topic scale-demo-topic-v2 \
   --partitions 6 --replication-factor 2
 ```
@@ -12,7 +12,7 @@ kafka-topics --bootstrap-server broker1:9092 \
 Verify:
 
 ```bash
-kafka-topics --bootstrap-server broker1:9092 \
+./kafka-topics.sh --bootstrap-server localhost:9092 \
   --describe --topic scale-demo-topic-v2
 ```
 

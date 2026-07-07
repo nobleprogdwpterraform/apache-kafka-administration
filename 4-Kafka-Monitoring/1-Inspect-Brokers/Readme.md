@@ -1,3 +1,7 @@
+## Make executable scripts
+chmod +x ./run-demo.sh
+
+
 ## 0. Setup 3 nodes kafka cluster
 
 docker compose -f single-broker.yaml --env-file environment.env up
@@ -73,7 +77,7 @@ docker start kafka-2
 After a few seconds, describe the topic again:
 
 ./kafka-topics.sh \
-  --bootstrap-server broker1:9092 \
+  --bootstrap-server localhost:9092 \
   --describe \
   --topic demo-topic
 

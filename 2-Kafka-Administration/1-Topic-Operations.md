@@ -3,7 +3,7 @@
 
 
 ./kafka-topics.sh --create \
-  --topic topic-1 \
+  --topic my-topic \
   --partitions 3 \
   --replication-factor 3 \
   --bootstrap-server localhost:9092,localhost:9094

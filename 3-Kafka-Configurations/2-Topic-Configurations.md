@@ -24,7 +24,7 @@
 ## Changing a Topic configurations
 
 ```bash id="ez4qcu"
-./kafka-topics.sh --describe \
+./kafka-topics.sh --create  \
   --bootstrap-server localhost:9092 \
   --topic configured-topic
 ```
@@ -50,11 +50,12 @@
  ### Kafka topics command to see topic configuration.
 
 ```bash id="ep56es"
-./kafka-topics.sh --describe \
+./kafka-configs.sh \
   --bootstrap-server localhost:9092 \
-  --topic configured-topic
+  --entity-type topics \
+  --entity-name configured-topic \
+  --describe 
 ```
-
 
 
 ## Delete the Topic Configuration
