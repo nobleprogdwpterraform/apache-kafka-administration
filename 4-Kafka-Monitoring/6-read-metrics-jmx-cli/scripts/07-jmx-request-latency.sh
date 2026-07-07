@@ -7,9 +7,9 @@ get_mean() {
   local req="$1"
   local out
   out="$(
-    docker exec broker1 bash -lc "
+    docker exec kafka-1 bash -lc "
       unset JMX_PORT KAFKA_JMX_PORT KAFKA_JMX_OPTS;
-      kafka-run-class kafka.tools.JmxTool \
+      /opt/kafka/bin/kafka-run-class.sh kafka.tools.JmxTool \
         --jmx-url ${JMX_URL} \
         --object-name kafka.network:type=RequestMetrics,name=TotalTimeMs,request=${req} \
         --attributes Mean \

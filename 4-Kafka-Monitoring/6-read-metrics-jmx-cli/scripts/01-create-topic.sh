@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker exec broker1 bash -lc "
+docker exec kafka-1 bash -lc "
   unset JMX_PORT KAFKA_JMX_PORT KAFKA_JMX_OPTS;
-  kafka-topics --bootstrap-server broker1:9092 \
+  /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9090 \
     --create --if-not-exists \
     --topic ops-demo-metrics \
     --partitions 3 --replication-factor 3

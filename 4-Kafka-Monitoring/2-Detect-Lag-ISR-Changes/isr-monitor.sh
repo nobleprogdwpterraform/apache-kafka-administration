@@ -3,8 +3,8 @@
 while true; do
   clear
 
-  docker exec broker1 kafka-topics \
-    --bootstrap-server broker1:9092 \
+  docker exec kafka-1 /opt/kafka/bin/kafka-topics.sh \
+    --bootstrap-server kafka-1:9092 \
     --describe --topic lag-demo-topic 2>/dev/null |
   awk '
     BEGIN {

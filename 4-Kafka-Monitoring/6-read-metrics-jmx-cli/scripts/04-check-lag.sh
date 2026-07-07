@@ -46,9 +46,9 @@ print_table() {
 
 run_once() {
   # IMPORTANT: disable CLI JMX env to avoid port 9999 conflicts
-  docker exec broker1 bash -lc "
+  docker exec kafka-1 bash -lc "
     unset JMX_PORT KAFKA_JMX_PORT KAFKA_JMX_OPTS;
-    kafka-consumer-groups --bootstrap-server broker1:9092 --describe --group $GROUP
+    /opt/kafka/bin/kafka-consumer-groups.sh --bootstrap-server kafka-1:9090 --describe --group $GROUP
   " 2>/dev/null
 }
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker exec broker1 bash -lc "
+docker exec kafka-1 bash -lc "
   unset JMX_PORT KAFKA_JMX_PORT KAFKA_JMX_OPTS;
-  kafka-console-consumer \
-    --bootstrap-server broker1:9092 \
+  /opt/kafka/bin/kafka-console-consumer.sh \
+    --bootstrap-server kafka-1:9090 \
     --topic ops-demo-metrics \
     --group ops-demo-cg \
     --from-beginning \

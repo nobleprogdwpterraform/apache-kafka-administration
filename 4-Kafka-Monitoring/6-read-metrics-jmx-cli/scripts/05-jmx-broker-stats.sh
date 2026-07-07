@@ -4,9 +4,9 @@ set -euo pipefail
 JMX_URL="service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
 
 run_jmx() {
-  docker exec broker1 bash -lc "
+  docker exec kafka-1 bash -lc "
     unset JMX_PORT KAFKA_JMX_PORT KAFKA_JMX_OPTS;
-    kafka-run-class kafka.tools.JmxTool \
+    /opt/kafka/bin/kafka-run-class.sh kafka.tools.JmxTool \
       --jmx-url ${JMX_URL} \
       --object-name \"$1\" \
       --attributes $2 \

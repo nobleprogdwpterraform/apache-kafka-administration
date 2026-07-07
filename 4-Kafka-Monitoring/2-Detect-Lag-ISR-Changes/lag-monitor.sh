@@ -3,7 +3,7 @@
 while true; do
   clear
 
-  docker exec kafka-1 kafka-consumer-groups \
+  docker exec kafka-1 /opt/kafka/bin/kafka-consumer-groups.sh \
     --bootstrap-server kafka-1:9092 \
     --describe --group lag-demo-group 2>/dev/null |
   awk '

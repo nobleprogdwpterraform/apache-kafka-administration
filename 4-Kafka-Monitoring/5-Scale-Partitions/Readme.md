@@ -53,6 +53,8 @@ docker exec -it broker3 kafka-producer-perf-test \
 
 ```bash
 ./isr-monitor-scale.sh
+./leader-monitor-scale.sh
+./lag-monitor-scale.sh
 ```
 
 You should see all ISR entries **green**.
