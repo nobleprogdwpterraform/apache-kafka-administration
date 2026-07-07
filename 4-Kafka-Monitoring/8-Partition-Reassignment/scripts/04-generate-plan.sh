@@ -6,30 +6,25 @@ h1 "STEP 3 (Terminal B): Generate Reassignment Plan"
 hr
 printf "%b\n" "${DIM}Goal: add broker3 into replica sets so the cluster is not concentrated on brokers 1 and 2${RESET}"
 hr
-
 docker exec "$BROKER_CONTAINER" bash -lc "
   cat > /tmp/topics-to-move.json <<EOF
 {\"version\":1,\"topics\":[{\"topic\":\"$TOPIC\"}]}
 EOF
-
   $KAFKA_ENV_FIX
   /opt/kafka/bin/kafka-reassign-partitions.sh --bootstrap-server $BOOTSTRAP \
     --generate \
     --topics-to-move-json-file /tmp/topics-to-move.json \
     --broker-list \"1,2,3\" | tee /tmp/reassign-generate.out
 
-  # CURRENT assignment JSON
   awk '
     /Current partition replica assignment/ {flag=1; next}
-    flag {print}
-  ' /tmp/reassign-generate.out | sed '/^[[:space:]]*$/d' > /tmp/reassign-current.json
+    flag && NF {print; exit}
+  ' /tmp/reassign-generate.out > /tmp/reassign-current.json
 
-  # PROPOSED assignment JSON
   awk '
     /Proposed partition reassignment configuration/ {flag=1; next}
-    /Current partition replica assignment/ {flag=0}
-    flag {print}
-  ' /tmp/reassign-generate.out | sed '/^[[:space:]]*$/d' > /tmp/reassign.json
+    flag && NF {print; exit}
+  ' /tmp/reassign-generate.out > /tmp/reassign.json
 " >/dev/null
 
 ok "Saved JSON in broker1:"
