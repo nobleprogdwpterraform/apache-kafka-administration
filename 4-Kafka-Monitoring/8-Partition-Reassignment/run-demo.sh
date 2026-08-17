@@ -12,25 +12,25 @@ cd "$script_dir"
 need() { command -v "$1" >/dev/null 2>&1 || { echo "Missing dependency: $1"; exit 1; }; }
 need docker
 
-echo "Starting containers (ZooKeeper + 3 brokers only)"
-docker compose up -d --force-recreate --remove-orphans
+echo "Starting containers (3 brokers only)"
+docker compose --env-file environment.env up -d --force-recreate --remove-orphans
 
-echo "Waiting for Kafka on broker1:9092..."
+echo "Waiting for Kafka on kafka-1:9092..."
 for i in {1..90}; do
-  if docker exec broker1 bash -lc "ps aux | grep -E '[k]afka.Kafka' >/dev/null"; then
-    if docker exec broker1 bash -lc "bash -lc '</dev/tcp/localhost/9092' >/dev/null 2>&1"; then
-      echo "Kafka is listening on broker1:9092"
+  if docker exec kafka-1 bash -lc "ps aux | grep -E '[k]afka.Kafka' >/dev/null"; then
+    if docker exec kafka-1 bash -lc "bash -lc '</dev/tcp/localhost/9092' >/dev/null 2>&1"; then
+      echo "Kafka is listening on kafka-1:9092"
       break
     fi
   fi
   sleep 1
 done
 
-if ! docker exec broker1 bash -lc "unset JMX_PORT KAFKA_JMX_OPTS KAFKA_JMX_PORT; kafka-topics --bootstrap-server broker1:9092 --list >/dev/null 2>&1"; then
+if ! docker exec kafka-1 bash -lc "unset JMX_PORT KAFKA_JMX_OPTS KAFKA_JMX_PORT; kafka-topics --bootstrap-server kafka-1:9092 --list >/dev/null 2>&1"; then
   echo ""
-  echo "ERROR: Kafka is not ready on broker1:9092. Printing broker logs."
+  echo "ERROR: Kafka is not ready on kafka-1:9092. Printing broker logs."
   docker compose ps -a || true
-  docker compose logs broker1 --tail=200 || true
+  docker compose logs kafka-1 --tail=200 || true
   exit 1
 fi
 
